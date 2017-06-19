@@ -20,6 +20,7 @@
 
 
 echo "Waiting 60 seconds"
+sleep 60s
 
 echo "Clearing local directory"
 rm -r /local/*
