@@ -21,5 +21,5 @@
   echo "Waiting 60 seconds"
 
   echo "Clearing local directory"
-  find "/local" -mindepth 1 -type d -empty -delete
+  rm -r /local/*
 ) 200>/var/lock/rclone.lock
