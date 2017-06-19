@@ -16,10 +16,10 @@
 
   echo "Executing => $sync_command"
   eval "$sync_command"
-
-
-  echo "Waiting 60 seconds"
-
-  echo "Clearing local directory"
-  rm -r /local/*
 ) 200>/var/lock/rclone.lock
+
+
+echo "Waiting 60 seconds"
+
+echo "Clearing local directory"
+rm -r /local/*
