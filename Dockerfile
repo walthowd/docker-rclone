@@ -18,6 +18,8 @@ RUN \
 # Install Node.js
 RUN apk add --update nodejs
 
+RUN node -v
+
 # install build packages
 RUN \
  apk add --no-cache --virtual=build-dependencies \
@@ -61,7 +63,7 @@ RUN \
 	touch /var/lock/rclone.lock
 
 # Install express.js
-RUN npm install
+RUN cd /root && npm install
 
 # add local files
 COPY root/ /
