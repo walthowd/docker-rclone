@@ -18,7 +18,7 @@ RUN \
 # Install Node.js
 RUN apk add --update nodejs
 
-RUN apk add --update npm
+RUN apt add --update build-essential
 
 RUN node -v
 
