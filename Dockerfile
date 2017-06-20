@@ -20,6 +20,8 @@ RUN apk add --update nodejs
 
 RUN node -v
 
+RUN npm
+
 # install build packages
 RUN \
  apk add --no-cache --virtual=build-dependencies \
