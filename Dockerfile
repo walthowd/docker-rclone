@@ -13,8 +13,10 @@ ENV S6_KEEP_ENV=1
 RUN \
  apk update && \
  apk add --no-cache \
- apk add --update nodejs \
  ca-certificates
+
+# Install Node.js
+RUN apk add --update nodejs
 
 # install build packages
 RUN \
@@ -59,7 +61,7 @@ RUN \
 	touch /var/lock/rclone.lock
 
 # Install express.js
-RUN npm install
+RUN cd /root && npm install
 
 # add local files
 COPY root/ /
