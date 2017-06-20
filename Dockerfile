@@ -61,7 +61,7 @@ RUN \
 	touch /var/lock/rclone.lock
 
 # Install express.js
-RUN cd /root && npm install
+RUN cd root && npm install
 
 # add local files
 COPY root/ /
