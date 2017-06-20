@@ -18,9 +18,11 @@ RUN \
 # Install Node.js
 RUN apk add --update nodejs
 
+RUN apk add --update npm
+
 RUN node -v
 
-RUN npm
+RUN npm -v
 
 # install build packages
 RUN \
