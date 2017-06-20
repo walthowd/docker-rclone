@@ -16,7 +16,7 @@ RUN \
  ca-certificates
 
 # Install Node.js
-RUN apt-get install -y nodejs
+RUN apk add --update nodejs
 
 # install build packages
 RUN \
