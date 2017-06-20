@@ -16,7 +16,7 @@ RUN \
  ca-certificates
 
 # Install Node.js
-RUN apk add --update nodejs nodejs-npm && npm install npm@latest -g
+RUN apk add --update nodejs
 
 RUN node -v
 
