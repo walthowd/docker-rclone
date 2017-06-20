@@ -19,8 +19,8 @@
 ) 200>/var/lock/rclone.lock
 
 
-echo "Waiting 60 seconds"
-sleep 60s
+echo "Waiting 10 seconds"
+sleep 10s
 
 echo "Clearing local directory"
-rm -r /media/*
+rm -Rf "/media/"*
