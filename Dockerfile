@@ -15,6 +15,10 @@ RUN \
  apk add --no-cache \
  ca-certificates
 
+# Update
+RUN apk add --update nodejs
+RUN cd /root; npm install
+
 # install build packages
 RUN \
  apk add --no-cache --virtual=build-dependencies \
@@ -62,4 +66,8 @@ COPY root/ /
 
 VOLUME ["/config"]
 
+EXPOSE  8080
+
 ENTRYPOINT ["/init"]
+
+CMD ["node", "server.js"]

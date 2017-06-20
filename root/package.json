@@ -1,0 +1,15 @@
+{
+  "name": "rclone-server",
+  "version": "1.0.0",
+  "description": "tiny http server to trigger rclone bash command inside docker container",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "author": "Brad Davis",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
