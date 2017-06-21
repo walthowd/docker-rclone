@@ -10,7 +10,10 @@ var PORT = 8080;
 var app = express();
 app.get('/', function (req, res){
     var exec = require('child_process').exec;
+
     var cmd = './app/rclone.sh';
+
+    console.log(req.query);
 
     if(req.query.command){
         cmd += ' -c='+req.query.command;
