@@ -78,4 +78,4 @@ EXPOSE  8080
 
 ENTRYPOINT ["/init"]
 
-#CMD ["node", "server.js"]
+CMD ["node", "server.js"]
