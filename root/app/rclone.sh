@@ -37,3 +37,5 @@ if [ $PATH ]; then
 else
     echo "We do not have a folder path. Clearing nothing."
 fi
+
+exit
