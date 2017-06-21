@@ -15,10 +15,6 @@ app.get('/', function (req, res){
 
     console.log(req.query);
 
-    if(req.query.command){
-        cmd += ' -c='+req.query.command;
-    }
-
     if(req.query.path){
         cmd += ' -p='+req.query.path;
     }

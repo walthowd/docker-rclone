@@ -32,5 +32,9 @@ done
 echo "Waiting 10 seconds"
 sleep 10s
 
-echo "Clearing $PATH in local directory"
-rm -Rf "/media/$PATH"
+if [ $PATH ]; then
+    echo "Clearing $PATH in local directory"
+    rm -Rf "/media/$PATH"
+else
+    echo "We do not have a folder path. Clearing nothing."
+fi
