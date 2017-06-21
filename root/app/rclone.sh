@@ -27,24 +27,6 @@ echo "===========beginning script============="
 ) 200>/var/lock/rclone.lock
 
 
-while getopts p: option
-  do
-    case "${option}"
-  in
-    p) PATH=${OPTARG};;
-  esac
-done
-
-
-
-
-if [ $PATH ]; then
-    echo "Clearing /media/$PATH in local directory"
-    rm -Rf "/media/$PATH"
-else
-    echo "We do not have a folder path. Clearing nothing."
-fi
-
-
+find "/media" -depth -exec rmdir {} \; 2>/dev/null
 
 exit
