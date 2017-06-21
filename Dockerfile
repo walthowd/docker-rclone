@@ -21,6 +21,9 @@ RUN apk add --update nodejs nodejs-npm && npm install npm@latest -g
 # Install CURL
 RUN apk add --update curl
 
+# Install CURL
+RUN apk add --update nano
+
 # install build packages
 RUN \
  apk add --no-cache --virtual=build-dependencies \
