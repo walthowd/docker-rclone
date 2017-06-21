@@ -64,11 +64,11 @@ RUN \
 	mkdir -p /config /app /defaults /data && \
 	touch /var/lock/rclone.lock
 
-# Install express.js
-RUN cd root && npm install
-
 # add local files
 COPY root/ /
+
+# Install express.js
+RUN npm install
 
 VOLUME ["/config"]
 
