@@ -1,5 +1,11 @@
 #!/usr/bin/with-contenv sh
 
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1>/app/rclone.log 2>&1
+
+echo "===========beginning script============="
+
 (
   flock -n 200 || exit 1
 
@@ -17,25 +23,28 @@
 
   echo "Executing => $sync_command"
   eval "$sync_command"
+
 ) 200>/var/lock/rclone.lock
 
 
 while getopts p: option
-do
- case "${option}"
- in
- p) PATH=${OPTARG};;
- esac
+  do
+    case "${option}"
+  in
+    p) PATH=${OPTARG};;
+  esac
 done
 
-echo "Waiting 10 seconds"
-sleep 10s
+
+
 
 if [ $PATH ]; then
-    echo "Clearing $PATH in local directory"
+    echo "Clearing /media/$PATH in local directory"
     rm -Rf "/media/$PATH"
 else
     echo "We do not have a folder path. Clearing nothing."
 fi
+
+
 
 exit
