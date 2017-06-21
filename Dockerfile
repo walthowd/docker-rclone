@@ -18,9 +18,8 @@ RUN \
 # Install Node.js
 RUN apk add --update nodejs nodejs-npm && npm install npm@latest -g
 
-RUN node -v
-
-RUN npm -v
+# Install CURL
+RUN apk add --update curl
 
 # install build packages
 RUN \
