@@ -13,14 +13,6 @@ app.get('/', function (req, res){
 
     var cmd = './app/rclone.sh';
 
-    // console.log(req.query);
-    //
-    // if(req.query.path){
-    //     cmd += ' -p ' +req.query.path;
-    // }
-    //
-    // console.log("Command we are sending", cmd);
-
     exec(cmd, function(error, stdout, stderr) {
         // command output is in stdout
     });
