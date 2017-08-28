@@ -8,13 +8,14 @@ var PORT = 8080;
 
 // App
 var app = express();
-app.get('/', function (req, res){
-    var exec = require('child_process').exec;
+var exec = require('child_process').exec;
 
-    // var cmd = './app/rclone.sh';
+app.get('/', function (req, res){
+
+    var folder = req.query.folder || null;
 
     var rCloneSyncCommand = process.env.SYNC_COMMAND + ' \; 2>/dev/null';
-    var cleanupCommand = 'rm -r /media/* \; 2>/dev/null';
+    var cleanupCommand = 'rm -r /media/'+ folder ? folder + '/' : '' +'* \; 2>/dev/null';
 
     console.log("rCloneSyncCommand STARTING: ", rCloneSyncCommand);
     exec(rCloneSyncCommand, function(error, stdout, stderr) {
