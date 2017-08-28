@@ -63,7 +63,7 @@ RUN \
 	usermod -G users abc && \
 
 # create some files / folders
-	mkdir -p /config /app /defaults /data && \
+	mkdir -p /config /app /data && \
 	touch /var/lock/rclone.lock
 
 # add local files

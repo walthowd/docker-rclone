@@ -52,10 +52,6 @@ docker create \
 
 * `-v /config` The path where the .rclone.conf file is
 * `-v /data` The path to the data which should be backed up by Rclone
-* `-e SYNC_DESTINATION` The destination that the data should be backed up to (must be the same name as specified in .rclone.conf)
-* `-e RCLONE_CONFIG_PASS` If the rclone.conf is encrypted, specify the password here
-* `-e SYNC_DESTINATION_SUBPATH` If the data should be backed up to a subpath on the destionation (will automaticly be created if it does not exist)
-* `-e CRON_SCHEDULE` A custom cron schedule which will override the default value of: 0 * * * * (hourly)
 * `-e SYNC_COMMAND` A custom rclone command which will override the default value of: rclone sync /data $SYNC_DESTINATION:/$SYNC_DESTINATION_SUBPATH
 
 
