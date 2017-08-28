@@ -13,18 +13,28 @@ app.get('/', function (req, res){
 
     // var cmd = './app/rclone.sh';
 
-    var rCloneSyncCommand = process.env.SYNC_COMMAND;
-    var cleanupCommand = 'find "/media" -depth -exec rmdir {} \; 2>/dev/null';
+    var rCloneSyncCommand = process.env.SYNC_COMMAND + ' \; 2>/dev/null';
+    var cleanupCommand = 'rm -r /media/* \; 2>/dev/null';
 
-    console.log(rCloneSyncCommand);
+    console.log("rCloneSyncCommand STARTING: ", rCloneSyncCommand);
     exec(rCloneSyncCommand, function(error, stdout, stderr) {
-        console.log("rCloneSyncCommand RESPONSE: ", error, stdout, stderr);
+
+        if(error){
+            return console.log("rCloneSyncCommand ERROR: ", error);
+        } else {
+            console.log("rCloneSyncCommand DONE: ", stdout, stderr);
+        }
 
 
-        console.log(cleanupCommand);
+        console.log("cleanupCommand STARTING:", cleanupCommand);
         exec(cleanupCommand, function(error, stdout, stderr){
 
-            console.log("cleanupCommand RESPONSE: ", error, stdout, stderr);
+
+            if(error){
+                return console.log("cleanupCommand ERROR: ", error);
+            } else {
+                console.log("cleanupCommand DONE: ", stdout, stderr);
+            }
 
         });
         // command output is in stdout
