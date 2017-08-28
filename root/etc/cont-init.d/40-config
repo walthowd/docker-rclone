@@ -1,14 +1,7 @@
 #!/usr/bin/with-contenv sh
 
-# create empty config file
-touch /config/.rclone.conf
-
 # permissions
 chown -R abc:abc \
 	/app
-chown abc:abc \
-	/config/.rclone.conf
-chmod +x \
-	/app/rclone.sh
 chmod 777 \
 	/var/lock
