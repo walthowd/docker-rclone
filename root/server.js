@@ -27,7 +27,7 @@ app.get('/', function (req, res){
 
 
         console.log("cleanupCommand STARTING:", cleanupCommand);
-        exec(cleanupCommand, function(error, stdout, stderr){
+        exec(cleanupCommand, {'cwd': '/'}, function(error, stdout, stderr){
 
 
             if(error){
