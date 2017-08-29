@@ -62,6 +62,6 @@ VOLUME ["/config"]
 
 EXPOSE  8080
 
-ENTRYPOINT ["/init"]
+#ENTRYPOINT ["/init"]
 
 CMD ["node", "server.js"]
