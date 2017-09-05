@@ -37,7 +37,7 @@ app.get('/', function (req, res){
             } else {
                 console.log("cleanupCommand DONE: ", stdout, stderr);
 
-                console.log("removeEmptyDirs STARTING");
+                console.log("removeEmptyDirs STARTING", removeEmptyDirs);
                 exec(removeEmptyDirs, {'cwd': '/media'}, function(error, stdout, stderr){
 
 
