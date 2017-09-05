@@ -16,6 +16,7 @@ app.get('/', function (req, res){
 
     var rCloneSyncCommand = process.env.SYNC_COMMAND + ' \; 2>/dev/null';
     var cleanupCommand = 'rm -r /media/' + (folder ? folder + '/' : '*') + ' \; 2>/dev/null';
+    var removeEmptyDirs = 'find . -depth -type d -exec rmdir {} \; 2>/dev/null';
 
     console.log("rCloneSyncCommand STARTING: ", rCloneSyncCommand);
     exec(rCloneSyncCommand, function(error, stdout, stderr) {
@@ -35,6 +36,20 @@ app.get('/', function (req, res){
                 return console.log("cleanupCommand ERROR: ", error);
             } else {
                 console.log("cleanupCommand DONE: ", stdout, stderr);
+
+                console.log("removeEmptyDirs STARTING");
+                exec(removeEmptyDirs, {'cwd': '/media'}, function(error, stdout, stderr){
+
+
+                    if(error){
+                        return console.log("removeEmptyDirs ERROR: ", error);
+                    } else {
+                        console.log("removeEmptyDirs DONE: ", stdout, stderr);
+                    }
+
+                });
+
+
             }
 
         });
