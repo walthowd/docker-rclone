@@ -5,10 +5,8 @@ var express = require('express');
 var log4js = require('log4js');
 
 log4js.configure({
-    appenders: [
-        { type: 'console' },
-        { type: 'file', filename: '/logs/server.log', category: 'server' }
-    ]
+    appenders: { server: { type: 'file', filename: '/logs/server.log' } },
+    categories: { default: { appenders: ['server'], level: 'info' } }
 });
 
 
