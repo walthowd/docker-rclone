@@ -2,6 +2,17 @@
  * Created by braddavis on 6/19/17.
  */
 var express = require('express');
+var log4js = require('log4js');
+
+log4js.configure({
+    appenders: [
+        { type: 'console' },
+        { type: 'file', filename: '/logs/server.log', category: 'server' }
+    ]
+});
+
+
+var logger = log4js.getLogger('server');
 
 // Constants
 var PORT = 8080;
@@ -18,33 +29,33 @@ app.get('/', function (req, res){
     var cleanupCommand = 'rm -r /media/' + (folder ? folder + '/' : '*') + ' \; 2>/dev/null';
     var removeEmptyDirs = 'find . -depth -type d -exec rmdir {} \\; 2>/dev/null';
 
-    console.log("rCloneSyncCommand STARTING: ", rCloneSyncCommand);
+    logger.info(folder, "rCloneSyncCommand STARTING: ", rCloneSyncCommand);
     exec(rCloneSyncCommand, function(error, stdout, stderr) {
 
         if(error){
-            return console.log("rCloneSyncCommand ERROR: ", error);
+            return logger.info(folder, "rCloneSyncCommand ERROR: ", error);
         } else {
-            console.log("rCloneSyncCommand DONE: ", stdout, stderr);
+            logger.info(folder, "rCloneSyncCommand DONE: ", stdout, stderr);
         }
 
 
-        console.log("cleanupCommand STARTING:", cleanupCommand);
+        logger.info(folder, "cleanupCommand STARTING:", cleanupCommand);
         exec(cleanupCommand, {'cwd': '/'}, function(error, stdout, stderr){
 
 
             if(error){
-                return console.log("cleanupCommand ERROR: ", error);
+                return logger.info(folder, "cleanupCommand ERROR: ", error);
             } else {
-                console.log("cleanupCommand DONE: ", stdout, stderr);
+                logger.info(folder, "cleanupCommand DONE: ", stdout, stderr);
 
-                console.log("removeEmptyDirs STARTING", removeEmptyDirs);
+                logger.info(folder, "removeEmptyDirs STARTING", removeEmptyDirs);
                 exec(removeEmptyDirs, {'cwd': '/media'}, function(error, stdout, stderr){
 
 
                     if(error){
-                        return console.log("removeEmptyDirs ERROR: ", error);
+                        return logger.info(folder, "removeEmptyDirs ERROR: ", error);
                     } else {
-                        console.log("removeEmptyDirs DONE: ", stdout, stderr);
+                        logger.info(folder, "removeEmptyDirs DONE: ", stdout, stderr);
                     }
 
                 });
@@ -60,4 +71,4 @@ app.get('/', function (req, res){
 });
 
 app.listen(PORT);
-console.log('rClone-server started on http://localhost:' + PORT);
+logger.info('rClone-server started on http://localhost:' + PORT);
