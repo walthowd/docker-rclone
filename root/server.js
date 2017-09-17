@@ -20,6 +20,10 @@ app.get('/', function (req, res){
 
     exec(rCloneSyncCommand, function(error, stdout, stderr) {
         error ? logger.error("rCloneSyncCommand ERROR: ", error) : logger.info("rCloneSyncCommand DONE: ", stdout, stderr);
+
+        //Clean up empty folders
+        var removeEmptyDirs = 'find . -depth -type d -exec rmdir {} \\; 2>/dev/null';
+        exec(removeEmptyDirs, {'cwd': '/local_media'});
     });
 
     res.send('rClone shell script started.');
