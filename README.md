@@ -37,22 +37,24 @@ Docker for [Rclone][appurl] - a command line program to sync files and directori
 * Optional encryption (Crypt)
 * Optional FUSE mount (rclone mount) - **See [docker-rclone-mount][docker-rclone-mount]**
 
-## Usage
+## Create Docker Container
 
 ```
 docker create \
-  --name=Rclone \
-  -e SYNC_DESTINATION=<sync destination from .rclone.conf> \
-  -v </path for rclone.conf>:/config \
-  -v </path for backup>:/data \
-  tynor88/rclone
+--name=rclone.radarr \
+-p 8081:8080 \
+-v /home/user/mount/.local/encrypted_movie_folder:/source_folder \
+-v /home/user/.config/rclone:/config \
+-v /home/user/docker/containers/rclone.radarr/logs:/logs \
+-e SYNC_COMMAND="rclone move -v /source_folder/ gdrive_clusterboxcloud:cb/encrypted_movie_folder --size-only" \
+that1guy/docker-rclone
 ```
 
 **Parameters**
 
 * `-v /config` The path where the .rclone.conf file is
-* `-v /data` The path to the data which should be backed up by Rclone
-* `-e SYNC_COMMAND` A custom rclone command which will override the default value of: rclone sync /data $SYNC_DESTINATION:/$SYNC_DESTINATION_SUBPATH
+* `-v /source_folder` The path to the data which should be backed up by Rclone
+* `-e SYNC_COMMAND` A custom rclone command $SYNC_DESTINATION:/$SYNC_DESTINATION_SUBPATH
 
 
 ## Info
