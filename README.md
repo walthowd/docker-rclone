@@ -59,11 +59,11 @@ that1guy/docker-rclone
 
 **Starting rclone sync command inside docker container**
 
-To start the rclone command simply perform a GET request to the container.
-`curl rclone.radarr:8081`
+To start the rclone command inside this container simply perform a GET request to the container.
 
-If you `--link` this container inside the actual radarr container, for example
+If you `--link` this rclone container inside the actual radarr/sonarr container then you can trigger the rclone process with a post processing script in radarr/sonarr.
 
+For example.  Start start the radarr container like this:
 ```
 docker rm -fv radarr; docker run -d \
 --name=radarr \
