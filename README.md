@@ -57,6 +57,30 @@ that1guy/docker-rclone
 * `-e SYNC_COMMAND` A custom rclone command $SYNC_DESTINATION:/$SYNC_DESTINATION_SUBPATH
 
 
+**Starting rclone sync command inside docker container**
+
+To start the rclone command simply perform a GET request to the container.
+`curl rclone.radarr:8081`
+
+If you `--link` this container inside the actual radarr container, for example
+
+```
+docker rm -fv radarr; docker run -d \
+--name=radarr \
+--link rclone.radarr:rclone.radarr \
+.
+.
+.
+```
+
+Then you quickly build a post-processing script inside the radarr container the performs a GET request to start rclone sync.
+
+```
+#!/bin/bash
+eval "curl -i rclone.radarr:8080"
+exit
+```
+
 ## Info
 
 * Shell access whilst the container is running: `docker exec -it Rclone /bin/ash`
