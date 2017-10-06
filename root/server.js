@@ -13,7 +13,7 @@ log4js.configure({
 });
 var logger = log4js.getLogger('server');
 
-app.get('/', function (req, res){
+app.post('/', function (req, res){
 
     var rCloneSyncCommand = process.env.SYNC_COMMAND + " --config=/config/rclone.conf" + " --log-file=/logs/server.log --min-age 1m --delete-after";
     logger.info("rCloneSyncCommand STARTING: ", rCloneSyncCommand);
