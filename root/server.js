@@ -20,7 +20,7 @@ log4js.configure({
     },
     categories: {
         default: {
-            appenders: ['rclone_move', 'unionfs_cleanup'],
+            appenders: ['rclone_move'],
             level: 'info'
         }
     }
@@ -33,18 +33,18 @@ log4js.configure({
 var rclone_move_logger = log4js.getLogger('rclone_move');
 app.post('/rclone_move', function (req, res){
 
-    var rCloneSyncCommand = process.env.SYNC_COMMAND + " --config=/config/rclone.conf" + " --log-file=/logs/server.log --min-age 1m --delete-after";
-    rclone_move_logger.info("RCLONE MOVE COMMAND STARTING: ", rCloneSyncCommand);
+    var rCloneSyncCommand = process.env.SYNC_COMMAND + " --config=/rclone/rclone.conf" + " --log-file=/logs/server.log --min-age 1m --delete-after";
+    rclone_move_logger.info("rclone move command starting: ", rCloneSyncCommand);
 
     exec(rCloneSyncCommand, function(error, stdout, stderr) {
-        error ? rclone_move_logger.error("RCLONE MOVE COMMAND ERROR: ", error) : rclone_move_logger.info("RCLONE MOVE COMMAND DONE: ", stdout, stderr);
+        error ? rclone_move_logger.error("RCLONE MOVE COMMAND error: ", error) : rclone_move_logger.info("RCLONE MOVE COMMAND done: ", stdout, stderr);
 
         //Clean up empty folders
         var removeEmptyDirs = 'find . -depth -type d -exec rmdir {} \\; 2>/dev/null';
         exec(removeEmptyDirs, {'cwd': '/local_media'});
     });
 
-    res.send('RCLONE MOVE STARTED');
+    res.send('rclone move started');
 });
 
 
@@ -56,7 +56,7 @@ app.post('/unionfs_cleanup', function(req, res){
 
     unionfs_cleanup_logger.info("UNIONFS CLEANUP COMMAND STARTING:", "Blah balh");
 
-    unionfs_cleanup_logger.info("UNIONFS CLEANUP COMMAND DONE:", "Blah balh blah blah");
+    unionfs_cleanup_logger.info("UNIONFS CLEANUP COMMAND DONE:", "Blah balh");
 
     res.send('unionFS cleanup started');
 });

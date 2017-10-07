@@ -1,3 +1,6 @@
+#Source - did not clone with github cause I need inside docker container
+#https://github.com/ErAzOr2k/syncunionfstorclone/blob/master/syncunionfstorclone
+
 #!/bin/bash
 if pidof -o %PPID -x "$(basename $0)"; then
   exit 1
@@ -6,8 +9,8 @@ fi
 ###########################################################################################################
 
 # Change parameters to suit your needs:
-UNIONFSRWPATH='/mnt/.local/cloud' # unionfs-fuse RW directory
-RCLONEDEST='gdrive_decrypted:/' # rclone destination
+UNIONFSRWPATH='/local_media' # unionfs-fuse RW directory
+RCLONEDEST='gdrive_clusterboxcloud:cb/' # rclone destination
 EXCLUDE='/root/exclude' # File of specified excluded paths
 MINAGE=300 # minimum age of files to transfer (in minutes)
 CACHETIME=5 # Rclone directory cache time (in minutes)
@@ -50,14 +53,14 @@ while IFS= read -r -d '' FILE; do
 done < <(find $UNIONFSMETAPATH -type f -mmin +$MINAGE -name *$UNIONFSSUFFIX -print0)
 
 # MOVE FILES FROM UNIONFS RW DIRECTORY TO RCLONE DESTINATION
-if [[ -n $(rclone ls $UNIONFSRWPATH --min-age "$MINAGE"m --exclude "$UNIONFSMETADIR**") ]]; then
-  rclone move $UNIONFSRWPATH $RCLONEDEST --verbose --checksum --no-traverse --transfers=3 --checkers=3 --delete-after --min-age "$MINAGE"m --exclude "$UNIONFSMETADIR**" 2>&1 | tee -a $LOGFILE
-fi
+#if [[ -n $(rclone ls $UNIONFSRWPATH --min-age "$MINAGE"m --exclude "$UNIONFSMETADIR**") ]]; then
+#  rclone move $UNIONFSRWPATH $RCLONEDEST --verbose --checksum --no-traverse --transfers=3 --checkers=3 --delete-after --min-age "$MINAGE"m --exclude "$UNIONFSMETADIR**" 2>&1 | tee -a $LOGFILE
+#fi
 
 # CLEANING UP UNIONFS RW DIRECTORY
-if [ -n "$(find $UNIONFSRWPATH -depth -mindepth 1 -type d -not -path "$UNIONFSMETAPATH/*" -mmin +$MINAGE -empty)" ]; then
-  echo "$(date "+%Y/%m/%d %T") Cleaning up unionfs RW directory" | tee -a $LOGFILE
-  find $UNIONFSRWPATH -depth -mindepth 1 -type d -not -path "$UNIONFSMETAPATH/*" -mmin +$MINAGE -empty -exec rm -r {} \;
-fi
+#if [ -n "$(find $UNIONFSRWPATH -depth -mindepth 1 -type d -not -path "$UNIONFSMETAPATH/*" -mmin +$MINAGE -empty)" ]; then
+#  echo "$(date "+%Y/%m/%d %T") Cleaning up unionfs RW directory" | tee -a $LOGFILE
+#  find $UNIONFSRWPATH -depth -mindepth 1 -type d -not -path "$UNIONFSMETAPATH/*" -mmin +$MINAGE -empty -exec rm -r {} \;
+#fi
 
 exit
