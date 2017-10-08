@@ -8,11 +8,4 @@ fi
 echo "crontab => $(cat /defaults/unionfs_cleanup)"
 
 # set crontab
-crontab -u abc /defaults/unionfs_cleanup
-
-
-# permissions
-chown -R abc:abc \
-	/app
-chmod 777 \
-	/var/lock
+crontab /defaults/unionfs_cleanup
