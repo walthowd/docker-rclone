@@ -54,7 +54,7 @@ app.post('/rclone_move', function (req, res){
 var unionfs_cleanup_logger = log4js.getLogger('unionfs_cleanup');
 app.post('/unionfs_cleanup', function(req, res){
 
-    var unionFsCleanupCommand = "./unionfs-cleanup.sh -d " + process.env.RCLONE_DEST;
+    var unionFsCleanupCommand = "./unionfs-cleanup.sh -d=" + process.env.RCLONE_DEST;
     unionfs_cleanup_logger.info("UNIONFS CLEANUP COMMAND STARTING:", unionFsCleanupCommand);
 
     exec(unionFsCleanupCommand, function(error, stdout, stderr) {
