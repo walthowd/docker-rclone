@@ -1,5 +1,16 @@
 #!/usr/bin/with-contenv sh
 
+# change crontab file
+if [[ -n "$CRON_SCHEDULE" ]]; then
+  sed -i -e 's|0 \* \* \* \*|'"$CRON_SCHEDULE"'|g' /defaults/unionfs_cleanup
+fi
+
+echo "crontab => $(cat /defaults/unionfs_cleanup)"
+
+# set crontab
+crontab -u abc /defaults/unionfs_cleanup
+
+
 # permissions
 chown -R abc:abc \
 	/app
