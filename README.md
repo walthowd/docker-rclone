@@ -55,13 +55,16 @@ that1guy/docker-rclone
 * `-v /config` The path where the .rclone.conf file is
 * `-v /source_folder` The path to the data which should be backed up by Rclone
 * `-e SYNC_COMMAND` A custom rclone command $SYNC_DESTINATION:/$SYNC_DESTINATION_SUBPATH
+* `-e RCLONE_DEST` The rclone destination.
 
 
 **Starting rclone sync command inside docker container**
 
-To start the rclone command inside this container simply perform a GET request to the container.
+To start kick off the rclone move process inside this container simply perform a GET request to the container's `/rclone_move` endpoint`.
 
-If you `--link` this rclone container inside the actual radarr/sonarr container then you can trigger the rclone process with a post processing script in radarr/sonarr.
+To start kick off the unionfs cleanup process inside this container simply perform a GET request to the container's `/unionfs_cleanup` endpoint`.
+
+If you `--link` this rclone container inside the actual radarr/sonarr container then you can trigger the rclone process with a post processing webhook in radarr/sonarr.
 
 For example.  Start start the radarr container like this:
 ```

@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER Brad Davis <braddavis@clusterboxconsulting.com>
+MAINTAINER ClusterboxCloud <clusterbox@clusterboxcloud.com>
 
 # global environment settings
 ENV RCLONE_VERSION="current"
@@ -23,6 +23,9 @@ RUN apk add --update curl
 
 # Install CURL
 RUN apk add --update nano
+
+# Install Bash
+RUN apk add --update bash && rm -rf /var/cache/apk/*
 
 # install build packages
 RUN \
