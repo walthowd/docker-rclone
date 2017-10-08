@@ -6,11 +6,22 @@ if pidof -o %PPID -x "$(basename $0)"; then
   exit 1
 fi
 
+
+while getopts ':d' opts; do
+    case "${opts}" in
+        d) RCLONEDEST=$OPTARG ;; # rclone destination
+    esac
+done
+
+
+echo "Here is rclone dest: $RCLONEDEST"
+
+
 ###########################################################################################################
 
 # Change parameters to suit your needs:
 UNIONFSRWPATH='/local_media' # unionfs-fuse RW directory
-RCLONEDEST='gdrive_clusterboxcloud:cb/' # rclone destination
+#RCLONEDEST='gdrive_clusterboxcloud:cb/' # rclone destination
 EXCLUDE='/root/exclude' # File of specified excluded paths
 MINAGE=300 # minimum age of files to transfer (in minutes)
 CACHETIME=5 # Rclone directory cache time (in minutes)
