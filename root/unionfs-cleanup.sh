@@ -2,26 +2,23 @@
 #https://github.com/ErAzOr2k/syncunionfstorclone/blob/master/syncunionfstorclone
 
 #!/bin/bash
-#if pidof -o %PPID -x "$(basename $0)"; then
-#  exit 1
-#fi
 
-
-while getopts ':d' opts; do
-    case "${opts}" in
-        d) RCLONEDEST=$OPTARG ;; # rclone destination
-    esac
+while getopts d: option
+do
+ case "${option}"
+ in
+ d) RCLONEDEST=${OPTARG};;
+ esac
 done
 
 
-echo "Here is rclone dest: " $RCLONEDEST
+echo "Here is rclone dest: $RCLONEDEST"
 
 
 ###########################################################################################################
 
 # Change parameters to suit your needs:
 UNIONFSRWPATH='/local' # unionfs-fuse RW directory
-#RCLONEDEST='gdrive_clusterboxcloud:cb/' # rclone destination
 EXCLUDE='/root/exclude' # File of specified excluded paths
 MINAGE=300 # minimum age of files to transfer (in minutes)
 CACHETIME=5 # Rclone directory cache time (in minutes)
@@ -33,7 +30,6 @@ LOGFILE="/logs/huh.log"
 RCLONEDEST="${RCLONEDEST%/}/"
 UNIONFSMETADIR=".unionfs-fuse"
 UNIONFSSUFFIX="_HIDDEN~"
-UNIONFSRWPATH="${UNIONFSRWPATH%/}/"
 UNIONFSMETAPATH="$UNIONFSRWPATH/$UNIONFSMETADIR"
 
 # SYNC UNIONFS METADATA WITH RCLONE RESTINATION
