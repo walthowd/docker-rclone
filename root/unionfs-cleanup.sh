@@ -1,10 +1,10 @@
 #Source - did not clone with github cause I need inside docker container
 #https://github.com/ErAzOr2k/syncunionfstorclone/blob/master/syncunionfstorclone
 
-#!/bin/bash
-#if pidof -o %PPID -x "$(basename $0)"; then
-#  exit 1
-#fi
+#!/bin/sh
+if pidof -o %PPID -x "$(basename $0)"; then
+  exit 1
+fi
 
 
 while getopts ':d' opts; do
