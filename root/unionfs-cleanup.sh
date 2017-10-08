@@ -14,13 +14,13 @@ while getopts ':d' opts; do
 done
 
 
-echo "Here is rclone dest: $RCLONEDEST"
+echo "Here is rclone dest: " RCLONEDEST
 
 
 ###########################################################################################################
 
 # Change parameters to suit your needs:
-UNIONFSRWPATH='/local_media' # unionfs-fuse RW directory
+UNIONFSRWPATH='/local' # unionfs-fuse RW directory
 #RCLONEDEST='gdrive_clusterboxcloud:cb/' # rclone destination
 EXCLUDE='/root/exclude' # File of specified excluded paths
 MINAGE=300 # minimum age of files to transfer (in minutes)
@@ -29,9 +29,9 @@ CACHETIME=5 # Rclone directory cache time (in minutes)
 ###########################################################################################################
 
 # Do not change anything below!
-LOGFILE="/var/log/$(basename ${0%.*}).log"
+LOGFILE="/logs/unionfs_cleanup.log"
 RCLONEDEST="${RCLONEDEST%/}/"
-UNIONFSMETADIR=".unionfs"
+UNIONFSMETADIR=".unionfs-fuse"
 UNIONFSSUFFIX="_HIDDEN~"
 UNIONFSRWPATH="${UNIONFSRWPATH%/}/"
 UNIONFSMETAPATH="$UNIONFSRWPATH/$UNIONFSMETADIR"
