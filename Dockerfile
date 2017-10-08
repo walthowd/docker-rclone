@@ -52,7 +52,7 @@ RUN \
 
 # create abc user
 RUN \
-	mkdir -p /config /app /defaults /data &&
+	mkdir -p /config /app /defaults /data && \
 	touch /var/lock/rclone.lock
 
 # add local files
