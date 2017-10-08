@@ -58,10 +58,8 @@ app.post('/unionfs_cleanup', function(req, res){
     unionfs_cleanup_logger.info("UNIONFS CLEANUP COMMAND STARTING:", unionFsCleanupCommand);
 
     exec(unionFsCleanupCommand, function(error, stdout, stderr) {
-        error ? rclone_move_logger.error("UNIONFS CLEANUP COMMAND error: ", error) : rclone_move_logger.info("UNIONFS CLEANUP COMMAND done: ", stdout, stderr);
+        error ? unionfs_cleanup_logger.error("UNIONFS CLEANUP COMMAND error: ", stdout, stderr, error) : unionfs_cleanup_logger.info("UNIONFS CLEANUP COMMAND done: ", stdout, stderr);
     });
-
-    unionfs_cleanup_logger.info("UNIONFS CLEANUP COMMAND DONE:", "Blah balh");
 
     res.send('unionFS cleanup started');
 });
