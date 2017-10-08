@@ -14,7 +14,7 @@ while getopts ':d' opts; do
 done
 
 
-echo "Here is rclone dest: " RCLONEDEST
+echo "Here is rclone dest: " $RCLONEDEST
 
 
 ###########################################################################################################
@@ -29,7 +29,7 @@ CACHETIME=5 # Rclone directory cache time (in minutes)
 ###########################################################################################################
 
 # Do not change anything below!
-LOGFILE="/logs/unionfs_cleanup.log"
+LOGFILE="/logs/huh.log"
 RCLONEDEST="${RCLONEDEST%/}/"
 UNIONFSMETADIR=".unionfs-fuse"
 UNIONFSSUFFIX="_HIDDEN~"
