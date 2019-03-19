@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER ClusterboxCloud <clusterbox@clusterboxcloud.com>
+MAINTAINER Walt Howd <walthowd@gmail.com>
 
 # global environment settings
 ENV RCLONE_VERSION="current"
