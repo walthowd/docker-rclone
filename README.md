@@ -47,7 +47,7 @@ docker create \
 -v /home/user/.config/rclone:/config \
 -v /home/user/docker/containers/rclone.radarr/logs:/logs \
 -e SYNC_COMMAND="rclone move -v /source_folder/ gdrive_clusterboxcloud:cb/encrypted_movie_folder --size-only" \
-that1guy/docker-rclone
+walthowd/docker-rclone
 ```
 
 **Parameters**
@@ -91,6 +91,8 @@ exit
 * To monitor the logs of the container in realtime: `docker logs -f Rclone`
 
 ## Versions
-
++ **2019/03/19:**
+  * Forked to clean up, fixed volume mappings and HTTP methods
+  
 + **2017/01/25:**
   * Initial release
