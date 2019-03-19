@@ -9,7 +9,7 @@
 [![Docker Build Status](https://img.shields.io/docker/build/walthowd/docker-rclone.svg)][dockerstore]
 [![Docker Build](https://img.shields.io/docker/automated/walthowd/docker-rclone.svg)][dockerstore]
 
-Docker for [Rclone][appurl] - a command line program to sync files and directories to and from various cloud services.
+Web front end for Docker with [Rclone][appurl] - a command line program to sync files and directories to and from various cloud services. Simple Express.js server to execute rclone commands.
 
 **Cloud Services**
 * Google Drive
