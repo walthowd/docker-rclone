@@ -1,14 +1,13 @@
 [appurl]: https://rclone.org/
-[microbadger]: https://microbadger.com/images/tynor88/rclone
-[dockerstore]: https://store.docker.com/community/images/tynor88/rclone
-[docker-rclone-mount]: https://github.com/tynor88/docker-rclone-mount
+[microbadger]: https://microbadger.com/images/walthowd/docker-rclone
+[dockerstore]: https://store.docker.com/community/images/walthowd/docker-rclone
 
 # docker-rclone
-[![Docker Layers](https://images.microbadger.com/badges/image/tynor88/rclone.svg)][microbadger]
-[![Docker Pulls](https://img.shields.io/docker/pulls/tynor88/rclone.svg)][dockerstore]
-[![Docker Stars](https://img.shields.io/docker/stars/tynor88/rclone.svg)][dockerstore]
-[![Docker Build Status](https://img.shields.io/docker/build/tynor88/rclone.svg)][dockerstore]
-[![Docker Build](https://img.shields.io/docker/automated/tynor88/rclone.svg)][dockerstore]
+[![Docker Layers](https://images.microbadger.com/badges/image/walthowd/docker-rclone.svg)][microbadger]
+[![Docker Pulls](https://img.shields.io/docker/pulls/walthowd/docker-rclone.svg)][dockerstore]
+[![Docker Stars](https://img.shields.io/docker/stars/walthowd/docker-rclone.svg)][dockerstore]
+[![Docker Build Status](https://img.shields.io/docker/build/walthowd/docker-rclone.svg)][dockerstore]
+[![Docker Build](https://img.shields.io/docker/automated/walthowd/docker-rclone.svg)][dockerstore]
 
 Docker for [Rclone][appurl] - a command line program to sync files and directories to and from various cloud services.
 
