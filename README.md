@@ -76,7 +76,7 @@ Then you quickly build a post-processing script inside the radarr container the 
 
 ```
 #!/bin/bash
-eval "curl -i rclone.radarr:8084"
+eval "curl -i rclone.radarr:8084/rclone_sync"
 exit
 ```
 
