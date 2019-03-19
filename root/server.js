@@ -33,4 +33,4 @@ app.get('/rclone_sync', function (req, res){
 });
 
 app.listen(PORT);
-rclone_move_logger.info('rClone-server started on http://localhost:' + PORT);
+rclone_sync_logger.info('rClone-server started on http://localhost:' + PORT);
