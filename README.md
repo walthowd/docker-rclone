@@ -35,34 +35,30 @@ Docker for [Rclone][appurl] - a command line program to sync files and directori
 * Check mode to check for file hash equality
 * Can sync to and from network, eg two different cloud accounts
 * Optional encryption (Crypt)
-* Optional FUSE mount (rclone mount) - **See [docker-rclone-mount][docker-rclone-mount]**
 
 ## Create Docker Container
 
 ```
 docker create \
 --name=rclone.radarr \
--p 8081:8080 \
+-p 8084:8084 \
 -v /home/user/mount/.local/encrypted_movie_folder:/source_folder \
 -v /home/user/.config/rclone:/config \
 -v /home/user/docker/containers/rclone.radarr/logs:/logs \
--e SYNC_COMMAND="rclone move -v /source_folder/ gdrive_clusterboxcloud:cb/encrypted_movie_folder --size-only" \
+-e SYNC_COMMAND="rclone sync -v /source_folder/ gdrive:cb/encrypted_movie_folder --size-only" \
 walthowd/docker-rclone
 ```
 
 **Parameters**
 
-* `-v /config` The path where the .rclone.conf file is
+* `-v /config` The path where the rclone.conf file is
 * `-v /source_folder` The path to the data which should be backed up by Rclone
 * `-e SYNC_COMMAND` A custom rclone command $SYNC_DESTINATION:/$SYNC_DESTINATION_SUBPATH
-* `-e RCLONE_DEST` The rclone destination.
 
 
 **Starting rclone sync command inside docker container**
 
-To start kick off the rclone move process inside this container simply perform a GET request to the container's `/rclone_move` endpoint`.
-
-To start kick off the unionfs cleanup process inside this container simply perform a GET request to the container's `/unionfs_cleanup` endpoint`.
+To start kick off the rclone move process inside this container simply perform a GET request to the container's `/rclone_sync` endpoint`.
 
 If you `--link` this rclone container inside the actual radarr/sonarr container then you can trigger the rclone process with a post processing webhook in radarr/sonarr.
 
@@ -80,7 +76,7 @@ Then you quickly build a post-processing script inside the radarr container the 
 
 ```
 #!/bin/bash
-eval "curl -i rclone.radarr:8080"
+eval "curl -i rclone.radarr:8084"
 exit
 ```
 
