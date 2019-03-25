@@ -2,7 +2,7 @@ FROM alpine:latest
 MAINTAINER Walt Howd <walthowd@gmail.com>
 
 # global environment settings
-ENV RCLONE_VERSION="current"
+ENV RCLONE_VERSION="v1.46"
 ENV PLATFORM_ARCH="amd64"
 
 # s6 environment settings
@@ -35,7 +35,7 @@ RUN \
  unzip && \
 
  cd tmp && \
- wget -q http://downloads.rclone.org/rclone-${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
+ wget -q http://downloads.rclone.org/${RCLONE_VERSION}/rclone-${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
  unzip /tmp/rclone-${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
  mv /tmp/rclone-*-linux-${PLATFORM_ARCH}/rclone /usr/bin && \
 
