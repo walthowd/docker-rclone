@@ -2,7 +2,7 @@ FROM alpine:latest
 MAINTAINER Walt Howd <walthowd@gmail.com>
 
 # global environment settings
-ENV RCLONE_VERSION="v1.47"
+ENV RCLONE_VERSION="v1.47.0"
 ENV PLATFORM_ARCH="amd64"
 
 # s6 environment settings
