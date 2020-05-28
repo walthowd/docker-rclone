@@ -2,7 +2,7 @@ FROM alpine:latest
 MAINTAINER Walt Howd <walthowd@gmail.com>
 
 # global environment settings
-ENV INSTALL_RCLONE_VERSION="v1.51.0"
+ENV INSTALL_RCLONE_VERSION="v1.52.0"
 ENV PLATFORM_ARCH="amd64"
 
 # s6 environment settings
@@ -34,16 +34,20 @@ RUN \
  curl \
  unzip && \
 
- #cd tmp && \
- #wget -q http://downloads.rclone.org/${INSTALL_RCLONE_VERSION}/rclone-${INSTALL_RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
- #unzip /tmp/rclone-${INSTALL_RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
- #mv /tmp/rclone-*-linux-${PLATFORM_ARCH}/rclone /usr/bin && \
  cd tmp && \
- wget -q https://beta.rclone.org/rclone-beta-latest-linux-amd64.zip && \
- unzip -j -d rclone rclone-beta-latest-linux-amd64.zip && \
- mv /tmp/rclone/rclone /usr/bin && \
- apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/community \
+ wget -q http://downloads.rclone.org/${INSTALL_RCLONE_VERSION}/rclone-${INSTALL_RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
+ unzip /tmp/rclone-${INSTALL_RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
+ mv /tmp/rclone-*-linux-${PLATFORM_ARCH}/rclone /usr/bin && \
+  apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/community \
 	shadow && \
+	
+ # BETA Support	
+ #cd tmp && \
+ #wget -q https://beta.rclone.org/rclone-beta-latest-linux-amd64.zip && \
+ #unzip -j -d rclone rclone-beta-latest-linux-amd64.zip && \
+ #mv /tmp/rclone/rclone /usr/bin && \
+ #apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/community \
+ #	shadow && \
 
 # cleanup
  apk del --purge \
