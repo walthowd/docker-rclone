@@ -2,7 +2,7 @@ FROM alpine:latest
 MAINTAINER Walt Howd <walthowd@gmail.com>
 
 # global environment settings
-ENV INSTALL_RCLONE_VERSION="v1.53.3"
+ENV INSTALL_RCLONE_VERSION="v1.53.4"
 ENV PLATFORM_ARCH="amd64"
 
 # s6 environment settings
